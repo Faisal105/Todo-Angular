@@ -1,0 +1,20 @@
+<ul class="list-group mt-3 shadow-sm" id="todoList">
+  <li *ngFor="let item of todos" class="list-group-item d-flex justify-content-between p-3">
+    <span>
+      <input type="checkbox" [checked]="item.status" (change)="checkBoxChange(item._id,$event)">
+
+      <span [ngClass]="{'strike':item.status}"> {{item.name}}</span>
+      <!-- update Section -->
+      <div [ngClass]="{'d-none':!item.edit}" class="d-flex ">
+        <input type="text" placeholder="Enter value" value="{{item.task}}" />
+        <button class="updateBtn btn btn-sm btn-primary mx-2" (click)="updateTask(item,$event)">Update</button>
+        <button class="cancelBtn btn btn-sm btn-danger" (click)="toggleEdit(item, false)">Cancel</button>
+      </div>
+    </span>
+    <div>
+      <i class="bi bi-pencil-square" (click)="toggleEdit(item,true)"> </i>
+      <i class="bi bi-trash" (click)="deleteItem(item._id)"></i>
+    </div>
+
+  </li>
+</ul>
